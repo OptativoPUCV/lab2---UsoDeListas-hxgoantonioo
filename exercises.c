@@ -123,37 +123,34 @@ paraéntesis balanceados. Retorna 1 si están balanceados,
 int parentesisBalanceados(char *cadena) {
   Stack* P = create_stack();
   int i = 0;
+  int stack_size = 0;
 
   // Iterar a través de los caracteres en la cadena de entrada
   while (cadena[i] != '\0') {
     if (cadena[i] == '(' || cadena[i] == '[' || cadena[i] == '{') {
       push(P, &cadena[i]);
+      stack_size++;
     } else if (cadena[i] == ')' || cadena[i] == ']' || cadena[i] == '}') {
-      char bracket_abierto;
-
-      if (is_empty(P)) {
-        free_stack(P);
+      if (stack_size == 0) {
         return 0;
       }
 
-      bracket_abierto = *(char*)pop(P);
+      char bracket_abierto = *(char*)pop(P);
+      stack_size--;
 
       if ((bracket_abierto == '(' && cadena[i] != ')') ||
           (bracket_abierto == '[' && cadena[i] != ']') ||
           (bracket_abierto == '{' && cadena[i] != '}')) {
-        free_stack(P);
         return 0;
       }
     }
     i++;
   }
 
-  // Verificar si hay paréntesis de apertura no emparejados en la pila
-  if (is_empty(P)) {
-    free_stack(P);
+  // Verificar si hay paréntesis de apertura no emparejados
+  if (stack_size == 0) {
     return 1;
   } else {
-    free_stack(P);
     return 0;
   }
 }
