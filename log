@@ -99,3 +99,18 @@ Fri 22 Mar 2024 02:59:13 AM UTC:
  tests:  7|1
 total_score: 60/70
 8851e88
+Fri 22 Mar 2024 03:03:37 AM UTC: 
+ exercises.c | 38 ++++++++++++++++++++++++--------------
+ 1 file changed, 24 insertions(+), 14 deletions(-)
+In file included from test.c:5:
+exercises.c: In function ‘parentesisBalanceados’:
+exercises.c:134:11: error: implicit declaration of function ‘is_empty’ [-Werror=implicit-function-declaration]
+  134 |       if (is_empty(P)) {
+      |           ^~~~~~~~
+exercises.c:135:9: error: implicit declaration of function ‘free_stack’; did you mean ‘create_stack’? [-Werror=implicit-function-declaration]
+  135 |         free_stack(P);
+      |         ^~~~~~~~~~
+      |         create_stack
+cc1: all warnings being treated as errors
+Compilation failed
+b591182
